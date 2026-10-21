@@ -1,171 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="380" viewBox="0 0 900 380" role="img" aria-label="safescreen blacks out the screen when the owner looks away or an unknown face appears">
-  <defs>
-    <clipPath id="feedClip"><rect x="40" y="104" width="270" height="200" rx="10"/></clipPath>
-    <linearGradient id="sweep" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0"/>
-      <stop offset="0.5" stop-color="#2dd4bf" stop-opacity="0.35"/>
-      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
-    </linearGradient>
-    <style>
-      text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace; }
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="400" viewBox="0 0 900 400" role="img" aria-label="SafeScreen: your screen goes dark when you look away. One bad frame hides it; three good frames reveal it.">
+<defs>
+<clipPath id="camClip"><rect x="700" y="60" width="160" height="100"/></clipPath>
+<style>
+      .mono { font-family: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", "Roboto Mono", Menlo, Consolas, monospace; }
+      .sans { font-family: "Helvetica Neue", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Arial, sans-serif; }
 
-      /* 14s story: look (0-30) -> away (33-52) -> look (54-70) -> unknown face (71-91) -> look */
-
-      .cover { animation: cover 14s linear infinite; }
-      @keyframes cover {
-        0%, 35% { opacity: 0; }
-        37%, 52% { opacity: 1; }
-        54%, 71% { opacity: 0; }
-        73%, 90% { opacity: 1; }
-        92%, 100% { opacity: 0; }
-      }
-
-      .head { animation: head 14s ease-in-out infinite; }
-      @keyframes head {
-        0%, 31% { transform: translateX(0); }
-        34%, 52% { transform: translateX(-9px); }
-        55%, 100% { transform: translateX(0); }
-      }
-      .pup { animation: pup 14s ease-in-out infinite; }
-      @keyframes pup {
-        0%, 31% { transform: translate(0, 0); }
-        34%, 52% { transform: translate(-3px, -2px); }
-        55%, 100% { transform: translate(0, 0); }
-      }
-
-      .boxok { animation: boxok 14s linear infinite; }
-      @keyframes boxok { 0%, 31% { opacity: 1; } 33%, 53% { opacity: 0; } 55%, 100% { opacity: 1; } }
-      .boxaway { animation: boxaway 14s linear infinite; }
-      @keyframes boxaway { 0%, 32% { opacity: 0; } 34%, 52% { opacity: 1; } 54%, 100% { opacity: 0; } }
-
-      .stranger { animation: stranger 14s ease-out infinite; }
-      @keyframes stranger {
-        0%, 68% { opacity: 0; transform: translateX(26px); }
-        71%, 90% { opacity: 1; transform: translateX(0); }
-        93%, 100% { opacity: 0; transform: translateX(26px); }
-      }
-
-      .s1 { animation: s1 14s linear infinite; }
-      .s2 { animation: s2 14s linear infinite; }
-      .s3 { animation: s3 14s linear infinite; }
-      @keyframes s1 { 0%, 31% { opacity: 1; } 33%, 53% { opacity: 0; } 55%, 69% { opacity: 1; } 71%, 91% { opacity: 0; } 93%, 100% { opacity: 1; } }
-      @keyframes s2 { 0%, 32% { opacity: 0; } 34%, 52% { opacity: 1; } 54%, 100% { opacity: 0; } }
-      @keyframes s3 { 0%, 70% { opacity: 0; } 72%, 90% { opacity: 1; } 92%, 100% { opacity: 0; } }
-
-      .flow { stroke-dasharray: 6 6; animation: flow 1.2s linear infinite; }
-      @keyframes flow { to { stroke-dashoffset: -12; } }
-
-      .sweep { animation: sweep 3.2s linear infinite; }
-      @keyframes sweep { from { transform: translateY(-40px); } to { transform: translateY(220px); } }
-
-      .led { animation: led 1.2s ease-in-out infinite alternate; }
-      @keyframes led { from { opacity: 0.3; } to { opacity: 1; } }
-
-      .lock { animation: lockpulse 1.4s ease-in-out infinite alternate; }
-      @keyframes lockpulse { from { opacity: 0.7; } to { opacity: 1; } }
-    </style>
-  </defs>
-
-  <rect x="0.5" y="0.5" width="899" height="379" rx="14" fill="#0d1117" stroke="#30363d"/>
-
-  <!-- title -->
-  <rect x="40" y="36" width="6" height="30" rx="3" fill="#C41E3A"/>
-  <text x="58" y="52" font-size="20" font-weight="700" fill="#ffffff">safescreen</text>
-  <text x="58" y="70" font-size="12" fill="#8b949e">Looks away? Blacked out. Someone watching? Blacked out.</text>
-
-  <!-- webcam feed -->
-  <text x="40" y="96" font-size="11" fill="#6e7681">webcam · processed on-device</text>
-  <rect x="40" y="104" width="270" height="200" rx="10" fill="#0b0f14" stroke="#30363d"/>
-  <g clip-path="url(#feedClip)">
-    <rect class="sweep" x="40" y="104" width="270" height="40" fill="url(#sweep)"/>
-
-    <!-- owner -->
-    <g class="head">
-      <path d="M78 304 C 84 262, 112 250, 140 250 S 196 262, 202 304 Z" fill="#161d27" stroke="#3a4556" stroke-width="1.5"/>
-      <circle cx="140" cy="214" r="34" fill="#1c2430" stroke="#3a4556" stroke-width="1.5"/>
-      <circle cx="128" cy="208" r="6.5" fill="#e6edf3"/>
-      <circle cx="152" cy="208" r="6.5" fill="#e6edf3"/>
-      <g class="pup">
-        <circle cx="128" cy="208" r="3" fill="#0d1117"/>
-        <circle cx="152" cy="208" r="3" fill="#0d1117"/>
-      </g>
-      <path d="M130 228 Q140 234 150 228" fill="none" stroke="#3a4556" stroke-width="2" stroke-linecap="round"/>
-    </g>
-
-    <!-- owner detection boxes -->
-    <g class="boxok">
-      <rect x="98" y="172" width="84" height="86" rx="4" fill="none" stroke="#3fb950" stroke-width="2" stroke-dasharray="6 4"/>
-      <text x="98" y="167" font-size="11" fill="#3fb950">owner · looking</text>
-    </g>
-    <g class="boxaway">
-      <rect x="90" y="172" width="84" height="86" rx="4" fill="none" stroke="#C41E3A" stroke-width="2" stroke-dasharray="6 4"/>
-      <text x="90" y="167" font-size="11" fill="#ff6b81">owner · away</text>
-    </g>
-
-    <!-- unknown face -->
-    <g class="stranger">
-      <path d="M226 304 C 230 280, 246 272, 260 272 S 290 280, 294 304 Z" fill="#241821" stroke="#7a2a3a" stroke-width="1.5"/>
-      <circle cx="260" cy="248" r="22" fill="#2a1a20" stroke="#7a2a3a" stroke-width="1.5"/>
-      <circle cx="252" cy="244" r="4.5" fill="#e6edf3"/>
-      <circle cx="268" cy="244" r="4.5" fill="#e6edf3"/>
-      <circle cx="250.5" cy="244" r="2" fill="#0d1117"/>
-      <circle cx="266.5" cy="244" r="2" fill="#0d1117"/>
-      <rect x="232" y="218" width="56" height="62" rx="4" fill="none" stroke="#C41E3A" stroke-width="2" stroke-dasharray="6 4"/>
-      <text x="200" y="213" font-size="11" fill="#ff6b81">unknown face</text>
-    </g>
-  </g>
-
-  <!-- status line -->
-  <g class="s1">
-    <circle cx="48" cy="334" r="5" fill="#3fb950"/>
-    <text x="62" y="338" font-size="13" fill="#3fb950">owner looking · screen visible</text>
-  </g>
-  <g class="s2">
-    <circle cx="48" cy="334" r="5" fill="#f0b429"/>
-    <text x="62" y="338" font-size="13" fill="#f0b429">looking away · screen hidden</text>
-  </g>
-  <g class="s3">
-    <circle cx="48" cy="334" r="5" fill="#C41E3A"/>
-    <text x="62" y="338" font-size="13" fill="#ff6b81">unknown face · screen hidden</text>
-  </g>
-
-  <!-- local-only link -->
-  <path class="flow" d="M312 204 H438" fill="none" stroke="#484f58" stroke-width="2"/>
-  <path d="M432 198 L440 204 L432 210" fill="none" stroke="#484f58" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="375" y="228" font-size="10" fill="#6e7681" text-anchor="middle">no network</text>
-  <text x="375" y="242" font-size="10" fill="#6e7681" text-anchor="middle">no telemetry</text>
-
-  <!-- monitor -->
-  <rect x="440" y="96" width="400" height="224" rx="10" fill="#161b22" stroke="#30363d" stroke-width="3"/>
-  <circle class="led" cx="640" cy="104" r="2.5" fill="#3fb950"/>
-  <rect x="452" y="112" width="376" height="196" rx="4" fill="#0b0f14"/>
-  <rect x="620" y="320" width="40" height="16" fill="#21262d"/>
-  <rect x="588" y="336" width="104" height="7" rx="3.5" fill="#30363d"/>
-
-  <!-- screen content -->
-  <rect x="452" y="112" width="376" height="22" fill="#161b22"/>
-  <circle cx="465" cy="123" r="3" fill="#ff5f56"/>
-  <circle cx="477" cy="123" r="3" fill="#ffbd2e"/>
-  <circle cx="489" cy="123" r="3" fill="#27c93f"/>
-  <rect x="470" y="150" width="130" height="12" rx="3" fill="#e6edf3" opacity="0.85"/>
-  <rect x="470" y="176" width="300" height="8" rx="3" fill="#30363d"/>
-  <rect x="470" y="192" width="276" height="8" rx="3" fill="#30363d"/>
-  <rect x="470" y="208" width="310" height="8" rx="3" fill="#30363d"/>
-  <rect x="470" y="224" width="210" height="8" rx="3" fill="#30363d"/>
-  <rect x="470" y="248" width="96" height="8" rx="3" fill="#C41E3A" opacity="0.8"/>
-  <rect x="470" y="264" width="288" height="8" rx="3" fill="#30363d"/>
-  <rect x="470" y="280" width="180" height="8" rx="3" fill="#30363d"/>
-
-  <!-- blackout cover -->
-  <g class="cover">
-    <rect x="452" y="112" width="376" height="196" rx="4" fill="#000000"/>
-    <g class="lock">
-      <path d="M631 205 V198 A9 9 0 0 1 649 198 V205" fill="none" stroke="#C41E3A" stroke-width="3.5" stroke-linecap="round"/>
-      <rect x="624" y="205" width="32" height="24" rx="5" fill="#C41E3A"/>
-      <circle cx="640" cy="216" r="3.2" fill="#000000"/>
-      <rect x="638.8" y="216" width="2.4" height="8" rx="1.2" fill="#000000"/>
-    </g>
-    <text x="640" y="258" font-size="14" fill="#ff6b81" text-anchor="middle">screen hidden</text>
-  </g>
+      .stA { animation: stA 21s linear infinite; }
+      .stB { opacity: 0; animation: stB 21s linear infinite; }
+      .stC { opacity: 0; animation: stC 21s linear infinite; }
+      .stD { opacity: 0; animation: stD 21s linear infinite; }
+      .rV { opacity: 0; animation: rV 21s linear infinite; }
+      .seg1 { opacity: 0; animation: seg1 21s linear infinite; }
+      .seg2 { opacity: 0; animation: seg2 21s linear infinite; }
+      .cover { opacity: 0; animation: cover 21s linear infinite; }
+      .brk { opacity: 0; animation: brk 21s linear infinite; }
+      .btn0 { opacity: 0; animation: btn0 21s linear infinite; }
+      .btn1 { opacity: 0; animation: btn1 21s linear infinite; }
+      .btn2 { opacity: 0; animation: btn2 21s linear infinite; }
+      .why0 { opacity: 0; animation: why0 21s linear infinite; }
+      .why1 { opacity: 0; animation: why1 21s linear infinite; }
+      .why2 { opacity: 0; animation: why2 21s linear infinite; }
+      .behind { opacity: 0; animation: behind 21s ease-out infinite, slide 21s ease-out infinite; }
+      .head { animation: head 21s ease-in-out infinite; }
+      .eyes { animation: eyes 21s ease-in-out infinite; }
+      .led { animation: led 1.4s steps(1) infinite; }
+      @keyframes led { 0%, 60% { opacity: 1; } 61%, 100% { opacity: 0.35; } }
+      @keyframes stA { 0%{opacity:1;} 5.71%{opacity:1;} 5.9%{opacity:0;} 23.62%{opacity:0;} 23.81%{opacity:1;} 39.05%{opacity:1;} 39.24%{opacity:0;} 56.95%{opacity:0;} 57.14%{opacity:1;} 72.38%{opacity:1;} 72.57%{opacity:0;} 90.29%{opacity:0;} 90.48%{opacity:1;} 100%{opacity:1;} }
+      @keyframes stB { 0%{opacity:0;} 5.52%{opacity:0;} 5.71%{opacity:1;} 19.05%{opacity:1;} 19.24%{opacity:0;} 38.86%{opacity:0;} 39.05%{opacity:1;} 52.38%{opacity:1;} 52.57%{opacity:0;} 72.19%{opacity:0;} 72.38%{opacity:1;} 85.71%{opacity:1;} 85.9%{opacity:0;} 100%{opacity:0;} }
+      @keyframes stC { 0%{opacity:0;} 18.86%{opacity:0;} 19.05%{opacity:1;} 21.43%{opacity:1;} 21.62%{opacity:0;} 52.19%{opacity:0;} 52.38%{opacity:1;} 54.76%{opacity:1;} 54.95%{opacity:0;} 85.52%{opacity:0;} 85.71%{opacity:1;} 88.1%{opacity:1;} 88.29%{opacity:0;} 100%{opacity:0;} }
+      @keyframes stD { 0%{opacity:0;} 21.24%{opacity:0;} 21.43%{opacity:1;} 23.81%{opacity:1;} 24%{opacity:0;} 54.57%{opacity:0;} 54.76%{opacity:1;} 57.14%{opacity:1;} 57.33%{opacity:0;} 87.9%{opacity:0;} 88.1%{opacity:1;} 90.48%{opacity:1;} 90.67%{opacity:0;} 100%{opacity:0;} }
+      @keyframes rV { 0%{opacity:0;} 18.86%{opacity:0;} 19.05%{opacity:1;} 23.81%{opacity:1;} 24%{opacity:0;} 52.19%{opacity:0;} 52.38%{opacity:1;} 57.14%{opacity:1;} 57.33%{opacity:0;} 85.52%{opacity:0;} 85.71%{opacity:1;} 90.48%{opacity:1;} 90.67%{opacity:0;} 100%{opacity:0;} }
+      @keyframes seg1 { 0%{opacity:1;} 5.71%{opacity:1;} 5.9%{opacity:0;} 18.86%{opacity:0;} 19.05%{opacity:1;} 39.05%{opacity:1;} 39.24%{opacity:0;} 52.19%{opacity:0;} 52.38%{opacity:1;} 72.38%{opacity:1;} 72.57%{opacity:0;} 85.52%{opacity:0;} 85.71%{opacity:1;} 100%{opacity:1;} }
+      @keyframes seg2 { 0%{opacity:1;} 5.71%{opacity:1;} 5.9%{opacity:0;} 21.24%{opacity:0;} 21.43%{opacity:1;} 39.05%{opacity:1;} 39.24%{opacity:0;} 54.57%{opacity:0;} 54.76%{opacity:1;} 72.38%{opacity:1;} 72.57%{opacity:0;} 87.9%{opacity:0;} 88.1%{opacity:1;} 100%{opacity:1;} }
+      @keyframes cover { 0%{opacity:0;} 5.71%{opacity:0;} 6.67%{opacity:1;} 23.81%{opacity:1;} 25.24%{opacity:0;} 39.05%{opacity:0;} 40%{opacity:1;} 57.14%{opacity:1;} 58.57%{opacity:0;} 72.38%{opacity:0;} 73.33%{opacity:1;} 90.48%{opacity:1;} 91.9%{opacity:0;} 100%{opacity:0;} }
+      @keyframes brk { 0%{opacity:0;} 5.24%{opacity:0;} 5.71%{opacity:1;} 23.81%{opacity:1;} 24.76%{opacity:0;} 38.57%{opacity:0;} 39.05%{opacity:1;} 57.14%{opacity:1;} 58.1%{opacity:0;} 71.9%{opacity:0;} 72.38%{opacity:1;} 90.48%{opacity:1;} 91.43%{opacity:0;} 100%{opacity:0;} }
+      @keyframes btn0 { 0%{opacity:0;} 5.33%{opacity:0;} 5.71%{opacity:1;} 19.05%{opacity:1;} 20%{opacity:0;} 100%{opacity:0;} }
+      @keyframes why0 { 0%{opacity:0;} 5.52%{opacity:0;} 5.71%{opacity:1;} 19.05%{opacity:1;} 19.24%{opacity:0;} 100%{opacity:0;} }
+      @keyframes btn1 { 0%{opacity:0;} 38.67%{opacity:0;} 39.05%{opacity:1;} 52.38%{opacity:1;} 53.33%{opacity:0;} 100%{opacity:0;} }
+      @keyframes why1 { 0%{opacity:0;} 38.86%{opacity:0;} 39.05%{opacity:1;} 52.38%{opacity:1;} 52.57%{opacity:0;} 100%{opacity:0;} }
+      @keyframes btn2 { 0%{opacity:0;} 72%{opacity:0;} 72.38%{opacity:1;} 85.71%{opacity:1;} 86.67%{opacity:0;} 100%{opacity:0;} }
+      @keyframes why2 { 0%{opacity:0;} 72.19%{opacity:0;} 72.38%{opacity:1;} 85.71%{opacity:1;} 85.9%{opacity:0;} 100%{opacity:0;} }
+      @keyframes behind { 0%{opacity:0;} 70.48%{opacity:0;} 72.38%{opacity:1;} 85.71%{opacity:1;} 87.62%{opacity:0;} 100%{opacity:0;} }
+      @keyframes head { 0%{transform:translate(0px,0px);opacity:1;} 5.71%{transform:translate(0px,0px);opacity:1;} 7.62%{transform:translate(-18px,0px);opacity:1;} 19.05%{transform:translate(-18px,0px);opacity:1;} 21.43%{transform:translate(0px,0px);opacity:1;} 39.05%{transform:translate(0px,0px);opacity:1;} 41.43%{transform:translate(0px,70px);opacity:0;} 52.38%{transform:translate(0px,70px);opacity:0;} 55.24%{transform:translate(0px,0px);opacity:1;} 100%{transform:translate(0px,0px);opacity:1;} }
+      @keyframes eyes { 0%{transform:translate(0px,0px);} 5.71%{transform:translate(0px,0px);} 7.62%{transform:translate(-6px,0px);} 19.05%{transform:translate(-6px,0px);} 21.43%{transform:translate(0px,0px);} 100%{transform:translate(0px,0px);} }
+      @keyframes slide { 0%{transform:translate(22px,0px);} 72.38%{transform:translate(22px,0px);} 74.76%{transform:translate(0px,0px);} 85.71%{transform:translate(0px,0px);} 88.1%{transform:translate(22px,0px);} 100%{transform:translate(22px,0px);} }</style>
+</defs>
+<rect x="0.5" y="0.5" width="899" height="399" rx="14" fill="#e9e5dd" stroke="#c6c0b4"/>
+<rect x="40" y="13" width="24" height="24" rx="6" fill="#0a0a0b"/>
+<rect x="44.5" y="18" width="15" height="10.5" rx="1.4" fill="#e9e5dd"/>
+<rect x="45.8" y="21.2" width="12.4" height="6" rx="0.6" fill="#16161a"/>
+<rect x="50.2" y="19" width="3.6" height="1.4" fill="#b3350f"/>
+<rect x="50.5" y="28.5" width="3" height="2" fill="#6f6b63"/>
+<rect x="47.5" y="30.5" width="9" height="1.4" rx="0.7" fill="#6f6b63"/>
+<text class="mono" x="74" y="29" font-size="11" font-weight="700" letter-spacing="2" fill="#16161a">SAFESCREEN</text>
+<text class="mono" x="860" y="29" font-size="10" letter-spacing="1" fill="#6f6b63" text-anchor="end">NO NETWORK · NO TELEMETRY · NO ACCOUNT</text>
+<line x1="40" y1="44" x2="860" y2="44" stroke="#16161a" stroke-width="1.5"/>
+<text class="sans" x="40" y="104" font-size="44" font-weight="800" letter-spacing="-2.2" textLength="490" lengthAdjust="spacingAndGlyphs" fill="#16161a">Your screen goes dark</text>
+<text class="sans" x="40" y="148" font-size="44" font-weight="800" letter-spacing="-2.2" textLength="440" lengthAdjust="spacingAndGlyphs" fill="#6f6b63">when you look away.</text>
+<rect x="700" y="60" width="160" height="100" fill="#f2efe9" stroke="#c6c0b4"/>
+<g clip-path="url(#camClip)">
+<g class="behind" fill="none" stroke="#b3350f" stroke-width="2" stroke-dasharray="4 3">
+<circle cx="832" cy="96" r="13"/>
+<path d="M810 160C812 134 822 128 832 128S852 134 854 160"/>
+<circle cx="827" cy="94" r="1.6" fill="#b3350f" stroke="none"/><circle cx="837" cy="94" r="1.6" fill="#b3350f" stroke="none"/>
+</g>
+<g class="head" fill="none" stroke="#16161a" stroke-width="2.2" stroke-linecap="round">
+<circle cx="776" cy="104" r="20"/>
+<path d="M740 160C744 134 762 128 776 128S808 134 812 160"/>
+<g class="eyes" stroke="none" fill="#16161a"><circle cx="769" cy="100" r="2.2"/><circle cx="783" cy="100" r="2.2"/></g>
+</g>
+</g>
+<g fill="none" stroke="#16161a" stroke-width="2">
+<path d="M700 70V60H710M860 70V60H850M700 150V160H710M860 150V160H850"/>
+</g>
+<g class="brk" fill="none" stroke="#b3350f" stroke-width="2.4">
+<path d="M700 70V60H710M860 70V60H850M700 150V160H710M860 150V160H850"/>
+</g>
+<text class="mono" x="708" y="75" font-size="8" letter-spacing="1" fill="#6f6b63">CAM</text>
+<rect x="40" y="168" width="820" height="172" rx="4" fill="#0a0a0b"/>
+<text class="mono" x="56" y="186" font-size="11" fill="#55534e">.env — production</text>
+<circle class="led" cx="744" cy="182" r="3" fill="#b3350f"/>
+<text class="mono" x="844" y="186" font-size="10" letter-spacing="1" fill="#8a867e" text-anchor="end">CAMERA ACTIVE</text>
+<line x1="40" y1="196" x2="860" y2="196" stroke="#1d1d20"/>
+<text class="mono" x="56" y="220" font-size="11.5" fill="#46443f">1</text>
+<text class="mono" x="84" y="220" font-size="12" fill="#55534e"># do not commit this file</text>
+<text class="mono" x="56" y="238" font-size="11.5" fill="#46443f">2</text>
+<text class="mono" x="84" y="238" font-size="12" fill="#8fb4d9">DATABASE_URL<tspan fill="#6d6a64">=</tspan><tspan fill="#e0a63e">postgres://admin:correct-horse@db.internal/prod</tspan></text>
+<text class="mono" x="56" y="256" font-size="11.5" fill="#46443f">3</text>
+<text class="mono" x="84" y="256" font-size="12" fill="#8fb4d9">PAYMENTS_API_TOKEN<tspan fill="#6d6a64">=</tspan><tspan fill="#e0a63e">example-token-not-a-real-value</tspan></text>
+<text class="mono" x="56" y="274" font-size="11.5" fill="#46443f">4</text>
+<text class="mono" x="84" y="274" font-size="12" fill="#8fb4d9">STORAGE_ACCESS_KEY<tspan fill="#6d6a64">=</tspan><tspan fill="#e0a63e">example-key-do-not-use-anywhere</tspan></text>
+<text class="mono" x="56" y="292" font-size="11.5" fill="#46443f">5</text>
+<text class="mono" x="84" y="292" font-size="12" fill="#8fb4d9">FINANCE_EXPORT_URL<tspan fill="#6d6a64">=</tspan><tspan fill="#e0a63e">https://internal/payroll/q3.csv</tspan></text>
+<g class="cover">
+<rect x="40" y="197" width="820" height="109" fill="#000000"/>
+<circle cx="402" cy="252" r="3.5" fill="#b3350f"/>
+<text class="mono" x="414" y="256" font-size="12" letter-spacing="3" fill="#6d6a64">PROTECTED</text>
+</g>
+<line x1="40" y1="306" x2="860" y2="306" stroke="#1d1d20"/>
+<g class="stA"><text class="mono" x="56" y="327" font-size="11.5" font-weight="700" fill="#d8d5cf">VISIBLE</text><text class="mono" x="114" y="327" font-size="11" fill="#6d6a64">3/3 frames</text></g>
+<g class="stB"><circle cx="60" cy="323" r="3" fill="#b3350f"/><text class="mono" x="72" y="327" font-size="11.5" font-weight="700" fill="#d8d5cf">PROTECTED</text><text class="mono" x="150" y="327" font-size="11" fill="#6d6a64">0/3 frames</text></g>
+<g class="stC"><circle cx="60" cy="323" r="3" fill="#b3350f"/><text class="mono" x="72" y="327" font-size="11.5" font-weight="700" fill="#d8d5cf">PROTECTED</text><text class="mono" x="150" y="327" font-size="11" fill="#6d6a64">1/3 frames</text></g>
+<g class="stD"><circle cx="60" cy="323" r="3" fill="#b3350f"/><text class="mono" x="72" y="327" font-size="11.5" font-weight="700" fill="#d8d5cf">PROTECTED</text><text class="mono" x="150" y="327" font-size="11" fill="#6d6a64">2/3 frames</text></g>
+<g class="stA"><text class="mono" x="330" y="327" font-size="11" fill="#6d6a64">yaw 2.0° · roll −3.6°</text></g>
+<g class="why0"><text class="mono" x="330" y="327" font-size="11" fill="#6d6a64">head turned 38° · limit ±15°</text></g>
+<g class="why1"><text class="mono" x="330" y="327" font-size="11" fill="#6d6a64">no face in frame</text></g>
+<g class="why2"><text class="mono" x="330" y="327" font-size="11" fill="#6d6a64">2 faces in frame</text></g>
+<g class="rV"><text class="mono" x="330" y="327" font-size="11" fill="#6d6a64">revealing after 3 good frames</text></g>
+<rect x="800" y="321" width="14" height="5" fill="#2b2a28"/>
+<rect x="818" y="321" width="14" height="5" fill="#2b2a28"/>
+<rect x="836" y="321" width="14" height="5" fill="#2b2a28"/>
+<g class="seg1"><rect x="800" y="321" width="14" height="5" fill="#d8d5cf"/></g>
+<g class="seg2"><rect x="818" y="321" width="14" height="5" fill="#d8d5cf"/></g>
+<g class="stA"><rect x="836" y="321" width="14" height="5" fill="#d8d5cf"/></g>
+<rect x="40" y="352" width="104" height="28" fill="none" stroke="#16161a"/>
+<text class="mono" x="92" y="370" font-size="10.5" letter-spacing="1" text-anchor="middle" fill="#16161a">LOOK AWAY</text>
+<rect x="144" y="352" width="104" height="28" fill="none" stroke="#16161a"/>
+<text class="mono" x="196" y="370" font-size="10.5" letter-spacing="1" text-anchor="middle" fill="#16161a">LEAVE DESK</text>
+<rect x="248" y="352" width="160" height="28" fill="none" stroke="#16161a"/>
+<text class="mono" x="328" y="370" font-size="10.5" letter-spacing="1" text-anchor="middle" fill="#16161a">SOMEONE BEHIND YOU</text>
+<g class="btn0"><rect x="40" y="352" width="104" height="28" fill="#0a0a0b"/><text class="mono" x="92" y="370" font-size="10.5" letter-spacing="1" text-anchor="middle" fill="#e9e5dd">LOOK AWAY</text></g>
+<g class="btn1"><rect x="144" y="352" width="104" height="28" fill="#0a0a0b"/><text class="mono" x="196" y="370" font-size="10.5" letter-spacing="1" text-anchor="middle" fill="#e9e5dd">LEAVE DESK</text></g>
+<g class="btn2"><rect x="248" y="352" width="160" height="28" fill="#0a0a0b"/><text class="mono" x="328" y="370" font-size="10.5" letter-spacing="1" text-anchor="middle" fill="#e9e5dd">SOMEONE BEHIND YOU</text></g>
+<text class="mono" x="428" y="370" font-size="10.5" fill="#6f6b63">One disqualifying frame hides; three consecutive good ones reveal.</text>
 </svg>
