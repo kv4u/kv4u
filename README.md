@@ -31,8 +31,11 @@
 
 ## Epochix
 
-**Your training logs, in plain English.**
-Epochix turns raw ML training logs into an animated narrative that non-technical people can follow.
+<img src="https://raw.githubusercontent.com/Epochix-dev/epochix/main/asset/epochix_mark_512.png" alt="Epochix" width="72" />
+
+*Visual storytelling for deep learning training runs.*
+
+See what your model is actually doing: training logs become a plain-English story with a letter grade, live in VS Code.
 
 <a href="https://github.com/Epochix-dev/epochix"><img src="assets/epochix.svg" alt="Epochix narrating a training run: loss falls, then validation loss rises and it warns about overfitting" width="100%" /></a>
 
@@ -40,8 +43,9 @@ Epochix turns raw ML training logs into an animated narrative that non-technical
 
 ## safescreen
 
-**A privacy screen for Windows that watches the room so you don't have to.**
-Your webcam checks where you're looking and who's behind you. Look away, or let someone peek, and the screen goes black. Everything runs locally: no network, no telemetry.
+**Your screen goes dark when you look away.**
+
+Not a lock screen. Your webcam checks where you're looking and who's behind you, and the screen goes black the moment it matters. Everything runs locally: no network, no telemetry, no account.
 
 <a href="https://github.com/kv4u/safescreen"><img src="assets/safescreen.svg" alt="safescreen blacking out the screen when the owner looks away or an unknown face appears" width="100%" /></a>
 
