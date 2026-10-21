@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="260" viewBox="0 0 900 260" role="img" aria-label="KeyVan. Curious eyes. Builder mindset.">
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#21262d"/>
+    </pattern>
+    <linearGradient id="band" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#C41E3A" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#ff4d6d" stop-opacity="0.85"/>
+      <stop offset="1" stop-color="#C41E3A" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#ff6b81"/>
+      <stop offset="0.6" stop-color="#C41E3A"/>
+      <stop offset="1" stop-color="#6b0f20"/>
+    </radialGradient>
+    <clipPath id="eyeClip"><path d="M0 0 Q70 -70 140 0 Q70 70 0 0Z"/></clipPath>
+    <clipPath id="fpClip"><circle r="54"/></clipPath>
+    <style>
+      text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace; }
+
+      .cursor { animation: blink 1s steps(1) infinite; }
+      @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+
+      .l1, .l2, .l3 { opacity: 0; animation: rise 0.9s ease-out forwards; }
+      .l1 { animation-delay: 0.3s; }
+      .l2 { animation-delay: 0.7s; }
+      .l3 { animation-delay: 1.0s; }
+      @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+      .eye { transform-box: fill-box; transform-origin: center; animation: eyeblink 8s infinite; }
+      @keyframes eyeblink { 0%, 91%, 100% { transform: scaleY(1); } 94% { transform: scaleY(0.08); } }
+
+      .pupil { animation: gaze 8s ease-in-out infinite; }
+      @keyframes gaze {
+        0%, 100% { transform: translate(0, 0); }
+        14% { transform: translate(-30px, -8px); }
+        28% { transform: translate(28px, -12px); }
+        42% { transform: translate(32px, 10px); }
+        58% { transform: translate(-10px, 16px); }
+        74% { transform: translate(-28px, 8px); }
+        88% { transform: translate(0, 0); }
+      }
+
+      .band { animation: scan 2.6s ease-in-out infinite alternate; }
+      @keyframes scan { from { transform: translateY(-64px); } to { transform: translateY(64px); } }
+
+      .ridges { animation: pulse 2.6s ease-in-out infinite alternate; }
+      @keyframes pulse { from { opacity: 0.45; } to { opacity: 1; } }
+
+      .bracket { animation: pulse 1.3s ease-in-out infinite alternate; }
+    </style>
+  </defs>
+
+  <rect width="900" height="260" rx="14" fill="#0d1117"/>
+  <rect width="900" height="260" rx="14" fill="url(#dots)"/>
+  <rect x="0.5" y="0.5" width="899" height="259" rx="14" fill="none" stroke="#30363d"/>
+
+  <!-- name + tagline -->
+  <text x="48" y="104" font-size="64" font-weight="700" fill="#ffffff" textLength="232" lengthAdjust="spacingAndGlyphs">KeyVan</text>
+  <rect class="cursor" x="292" y="58" width="8" height="52" fill="#C41E3A"/>
+  <text class="l1" x="50" y="142" font-size="20" fill="#C41E3A">Curious eyes. Builder mindset.</text>
+  <text class="l2" x="50" y="174" font-size="13" fill="#8b949e">PhD researcher · Polytechnique Montréal · HyperSec</text>
+  <text class="l3" x="50" y="196" font-size="13" fill="#8b949e">eyes + fingers · Epochix · safescreen · HexoraX</text>
+
+  <!-- eye: gaze estimation -->
+  <g transform="translate(520,128) scale(1.3)">
+    <g class="eye">
+      <path d="M0 0 Q70 -70 140 0 Q70 70 0 0Z" fill="#0f1620"/>
+      <g clip-path="url(#eyeClip)">
+        <g class="pupil">
+          <circle cx="70" cy="0" r="27" fill="url(#iris)"/>
+          <circle cx="70" cy="0" r="11" fill="#05070a"/>
+          <circle cx="77" cy="-8" r="3.5" fill="#ffffff" opacity="0.85"/>
+        </g>
+      </g>
+      <path d="M0 0 Q70 -70 140 0 Q70 70 0 0Z" fill="none" stroke="#e6edf3" stroke-width="2.5" stroke-linejoin="round"/>
+    </g>
+  </g>
+  <text x="611" y="208" font-size="11" fill="#6e7681" text-anchor="middle">gaze.estimate()</text>
+
+  <!-- fingerprint: cross-domain verification -->
+  <g transform="translate(800,128)">
+    <circle r="56" fill="none" stroke="#30363d" stroke-width="1"/>
+    <g class="ridges" fill="none" stroke="#C41E3A" stroke-width="2.6" stroke-linecap="round">
+      <circle r="6"/>
+      <circle r="14" stroke-dasharray="60 20" transform="rotate(20)"/>
+      <circle r="22" stroke-dasharray="90 30" transform="rotate(100)"/>
+      <circle r="30" stroke-dasharray="120 40" transform="rotate(200)"/>
+      <circle r="38" stroke-dasharray="150 50" transform="rotate(-60)"/>
+      <circle r="46" stroke-dasharray="190 40" transform="rotate(130)"/>
+    </g>
+    <g clip-path="url(#fpClip)">
+      <rect class="band" x="-56" y="-14" width="112" height="28" fill="url(#band)"/>
+    </g>
+    <g class="bracket" fill="none" stroke="#C41E3A" stroke-width="2.5" stroke-linecap="round">
+      <path d="M-66 -44 V-66 H-44"/>
+      <path d="M66 -44 V-66 H44"/>
+      <path d="M-66 44 V66 H-44"/>
+      <path d="M66 44 V66 H44"/>
+    </g>
+  </g>
+  <text x="800" y="208" font-size="11" fill="#6e7681" text-anchor="middle">finger.verify()</text>
+</svg>
